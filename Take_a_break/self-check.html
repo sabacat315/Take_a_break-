@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Take a break 🪽</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #fdf6f0;
+      color: #5b4b44;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .card {
+      background: #fff8f4;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 2rem;
+      margin-top: 1rem;
+    }
+    .button {
+      padding: 10px 20px;
+      background: #ffdede;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0.5rem;
+      transition: background 0.3s;
+    }
+    .button:hover {
+      background: #ffcaca;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #b47a6c;
+    }
+    h2 {
+      color: #d08770;
+    }
+    ul {
+      text-align: left;
+      padding-left: 1em;
+    }
+    .star {
+      color: #f5c518;
+      margin-left: 5px;
+    }
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+    th, td {
+      border: 1px solid #ecdcd6;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #ffecea;
+    }
+    body {
+  font-family: 'Kiwi Maru', 'Zen Kaku Gothic New', sans-serif;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="startBox" class="card">
+      <h1>Take a break 🪽</h1>
+      <p>無理していませんか？ 
+        自分の状態をチェックして、あなたに合った休み方を見つけましょう。</p>
+      <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+      <button id="startBtn" class="button">診断スタート</button>
+    </div>
+
+    <div id="questionCard" class="card" style="display:none;">
+      <div id="questionBox"></div>
+    </div>
+
+    <div id="resultBox" class="card" style="display:none;"></div>
+
+    <div id="restCard" class="card restCard" style="display:none;">
+
+      <h3>おすすめの休憩方法</h3>
+      <div id="restTable"></div>
+    </div>
+
+    <div id="retryBox" class="card" style="display:none;">
+      <button onclick="location.reload()" class="button">◀︎ もう一度診断する</button>
+    
+    <div class="card" style="margin-top: 1rem;">
+      <a href="検証ページ.html" style="
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ffe3e3;
+        color: #5b4b44;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 1rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        transition: background 0.3s;
+      " onmouseover="this.style.backgroundColor='#ffd0d0'" onmouseout="this.style.backgroundColor='#ffe3e3'">
+        実際に検証してみた ▶
+        
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const startBtn = document.getElementById("startBtn");
+      const questionCard = document.getElementById("questionCard");
+      const questionBox = document.getElementById("questionBox");
+      const resultBox = document.getElementById("resultBox");
+      const restCard = document.getElementById("restCard");
+      const retryBox = document.getElementById("retryBox");
+
+      const questions = [
+        { text: "朝起きるのがつらい", type: "身体" },
+        { text: "肩や首がこりやすい", type: "身体" },
+        { text: "疲れを感じやすい体質だと思う", type: "身体" },
+        { text: "階段の上り下りがしんどいと感じる", type: "身体" },
+        { text: "仕事や勉強に集中できない", type: "脳・神経" },
+        { text: "SNSやスマホをずっと見てしまう", type: "脳・神経" },
+        { text: "考えが頭の中で止まらない", type: "脳・神経" },
+        { text: "マルチタスクが苦手になってきた", type: "脳・神経" },
+        { text: "イライラしやすい", type: "感情" },
+        { text: "なぜかやる気が出ない", type: "感情" },
+        { text: "誰にも会いたくないと感じることがある", type: "感情" },
+        { text: "ささいなことで涙が出る", type: "感情" },
+        { text: "目が疲れやすい", type: "感覚" },
+        { text: "周囲の音や光に敏感になっている気がする", type: "感覚" },
+        { text: "香りや音に強く反応してしまうことがある", type: "感覚" }
+      ];
+
+      let current = 0;
+      let scores = {};
+
+      startBtn.addEventListener("click", () => {
+        document.getElementById("startBox").style.display = "none";
+        questionCard.style.display = "block";
+        showQuestion();
+      });
+
+      function showQuestion() {
+        const q = questions[current];
+        questionBox.innerHTML = `
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+          <h2 class="fade-in">${q.text}</h2>
+          <button class="button" onclick="answer('yes')">はい</button>
+          <button class="button" onclick="answer('no')">いいえ</button>
+          ${current > 0 ? '<button class="button" onclick="goBack()">前へ</button>' : ''}
+        `;
+      }
+
+      window.answer = function (response) {
+        const type = questions[current].type;
+        if (response === "yes") {
+          scores[type] = (scores[type] || 0) + 1;
+        }
+        current++;
+        if (current < questions.length) {
+          showQuestion();
+        } else {
+          showResult();
+        }
+      }
+
+      window.goBack = function () {
+        const prevType = questions[current - 1].type;
+        if (scores[prevType]) {
+          scores[prevType]--;
+        }
+        current--;
+        showQuestion();
+      }
+
+      function showResult() {
+        questionCard.style.display = "none";
+        resultBox.style.display = "block";
+        restCard.style.display = "block";
+        retryBox.style.display = "block";
+
+        let max = 0;
+        let type = "";
+        for (let t in scores) {
+          if (scores[t] > max) {
+            max = scores[t];
+            type = t;
+          }
+        }
+
+        const encouragements = {
+          "身体": "毎日を頑張っている体を、今日は少しだけ甘やかしてあげましょうね。",
+          "脳・神経": "考えすぎて疲れてしまったのかもしれません。静かな時間を大切にしてみてください。",
+          "感情": "心がちょっとお疲れ気味かもしれません。自分の気持ちにやさしく寄り添ってあげてくださいね。",
+          "感覚": "五感がたくさんの刺激を受けてきたようです。優しい光や音に包まれてみましょう。"
+        };
+
+        resultBox.innerHTML = `
+          <h2>あなたは <strong>${type}</strong> タイプの疲れ</h2>
+          <p>このタイプの疲れが今のあなたにとって強く出ています。</p>
+          <p style="font-size: 1.1rem; color: #7a5e54;"><em>${encouragements[type] || "少しずつ、自分のペースで休んでくださいね。"}</em></p>
+        `;
+
+        document.getElementById("restTable").innerHTML = getRestRecommendations(type);
+      }
+
+      function getRestRecommendations(type) {
+        const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
+
+        const restData = {
+          "身体": [
+            { method: "ストレッチをする", rating: [5, 4, 4, 5, 4] },
+            { method: "温かいお風呂にゆっくり浸かる", rating: [4, 5, 4, 3, 4] },
+            { method: "十分な睡眠をとる", rating: [3, 5, 5, 5, 3] },
+            { method: "軽いウォーキングをする", rating: [4, 4, 4, 5, 4] },
+            { method: "就寝前は照明を暗くして副交感神経優位に", rating: [5, 4, 3, 4, 5] },
+            { method: "ホットアイマスクで目元を温める", rating: [5, 4, 4, 4, 4] }
+          ],
+          "脳・神経": [
+            { method: "一日完全オフ（予定を入れない）", rating: [3, 5, 4, 5, 4] },
+            { method: "スマホを使わない", rating: [3, 4, 3, 5, 3] },
+            { method: "自然の中を散歩する", rating: [5, 5, 4, 4, 4] },
+            { method: "塗り絵や手芸など手を動かす軽い趣味", rating: [4, 4, 4, 4, 3] },
+            { method: "静かな場所でひとり時間をとる", rating: [4, 5, 4, 5, 4] },
+            { method: "ハーブティーで一息", rating: [5, 4, 3, 4, 4] }
+          ],
+          "感情": [
+            { method: "信頼できる人に話す", rating: [4, 5, 4, 5, 4] },
+            { method: "泣ける映画を観る", rating: [5, 5, 3, 5, 5] },
+            { method: "日記やメモで気持ちを書き出す", rating: [4, 4, 4, 5, 4] },
+            { method: "感謝リストを作成する", rating: [5, 4, 4, 5, 3] },
+            { method: "小さな成功体験を振り返る", rating: [4, 4, 4, 4, 3] },
+            { method: "ペットや植物と過ごす", rating: [5, 4, 3, 5, 3] }
+          ],
+          "感覚": [
+            { method: "キャンドルやアロマを焚く", rating: [5, 4, 3, 4, 5] },
+            { method: "カフェで静かに過ごす", rating: [5, 4, 4, 3, 4] },
+            { method: "好きな音楽を聴く", rating: [5, 5, 4, 5, 4] },
+            { method: "スマホ・PCから15分だけでも離れて目を休める", rating: [4, 5, 3, 4, 4] },
+            { method: "視覚を癒す静かな風景を見る", rating: [5, 5, 4, 5, 3] },
+            { method: "触感が気持ちよいブランケットにくるまる", rating: [5, 4, 4, 5, 4] }
+          ]
+        };
+
+        const headers = ["休憩方法", "はじめやすさ", "リラックス効果", "持続しやすさ", "準備・コスト", "即効性",];
+
+        let html = '<table><thead><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>';
+        restData[type].forEach(item => {
+          html += '<tr>';
+          html += `<td>${item.method}</td>`;
+          item.rating.forEach(score => {
+            html += `<td>${stars(score)}</td>`;
+          });
+          html += '</tr>';
+        });
+        html += '</tbody></table>';
+        return html;
+      }
+    });
+  </script>
+</body>
+</html>

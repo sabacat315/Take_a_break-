@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Take a break🪽</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&family=Kiwi+Maru&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Kiwi Maru', 'Zen Kaku Gothic New', sans-serif;
+      background: #fdfcf7;
+      color: #444;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #f7ebe8;
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+      border-bottom: 3px dotted #e1d7d3;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #8a6e63;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #a08982;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 700px;
+      width: 100%;
+      margin: 1rem auto;
+      }
+     
+
+    @media (min-width: 500px) {
+      .button-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .check-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff5f5;
+      color: #a06a61;
+      text-decoration: none;
+      padding: 1rem;
+      border-radius: 16px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      text-align: center;
+      margin: 1rem ;
+    }
+    .check-link:hover {
+      background-color: #ffe5e5;
+      transform: translateY(-3px);
+    }
+
+    .check-link span {
+      margin-right: 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
+      padding: 2rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Take a break🪽</h1>
+    <p>こころとからだを、ちょっとひと休み。</p>
+
+    
+  </header>
+
+  <main class="main-content">
+    <div class="button-grid">
+      <a href="self-check.html" class="check-link"><span>❶</span>休憩診断を受けてみる</a>
+      <a href="検証ページ.html" class="check-link"><span>❷</span>実際に検証してみた</a>
+      <a href="休憩スポット.html" class="check-link"><span>❸</span>九産大おすすめ休憩スポット</a>
+      <a href="その他.html" class="check-link"><span>❹</span>その他</a>
+    </div>
+  </main>
+
+  <footer>
+    自分の気持ち、大切にしてね
+  </footer>
+</body>
+</html>

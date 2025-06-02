@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>九産大おすすめ休憩スポット</title>
+  <style>
+    body {
+      font-family: 'Kiwi Maru', sans-serif;
+      background-color: #fdfcf7;
+      color: #444;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #f7ebe8;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      border-bottom: 2px dotted #e1d7d3;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      color: #8a6e63;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #a08982;
+    }
+    .spot-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+      max-width: 960px;
+      margin: auto;
+    }
+    @media (min-width: 700px) {
+      .spot-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .spot {
+      background-color: #fffefe;
+      border: 2px solid #ffe8e8;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s;
+    }
+    .spot:hover {
+      transform: translateY(-5px);
+    }
+    .spot h2 {
+      color: #a06a61;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .spot p {
+      margin: 0.4rem 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .tag {
+      display: block;
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+      background: #fff0f0;
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      color: #6a6a6a;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 3rem auto 2rem;
+      color: #a06a61;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>九産大おすすめ休憩スポット</h1>
+    <p>疲れたときは、ちょっと立ち寄ってひと息つこう🍃</p>
+  </header>
+
+  <main class="spot-container">
+    <div class="spot">
+      <h2>図書館 3F ラウンジ</h2>
+      <p>静かで落ち着いた空間。自習や読書に最適な環境が整っています。</p>
+      <span class="tag">🔌 充電：机にコンセントあり</span>
+      <span class="tag">🪑 座席数：約30席（カウンター＋テーブル）</span>
+      <span class="tag">☕ 飲食：飲み物のみ可</span>
+    </div>
+
+    <div class="spot">
+      <h2>9号館 テラスベンチ</h2>
+      <p>風が通る屋外ベンチ。昼休みにおすすめの開放感あるスペース。</p>
+      <span class="tag">🔌 充電：不可</span>
+      <span class="tag">🪑 座席数：約10席（ベンチ形式）</span>
+      <span class="tag">☕ 飲食：可（屋外）</span>
+    </div>
+    <div class="spot">
+      <h2>17号館 4階 コミュニケーションラウンジ</h2>
+      <p>広々とした空間で、会話やグループワークに使いやすい。<br>エアコンが独立していて調節可能。</p>
+      <span class="tag">🔌 充電：壁際にあり</span>
+      <span class="tag">🪑 座席数：約40席（丸机）</span>
+      <span class="tag">☕ 飲食：可（自由に利用可能）</span>
+    </div>
+    <div class="spot">
+      <h2>1号館 1階 ラウンジ</h2>
+      <p>授業の合間に利用しやすい静かなラウンジ。<br>　机と椅子が整備され、待ち時間にも便利。</p>
+      <span class="tag">🔌 充電：一部コンセントあり</span>
+      <span class="tag">🪑 座席数：約25席（テーブル席）</span>
+      <span class="tag">☕ 飲食：可（自由に利用可能）</span>
+    </div>
+    <div class="spot">
+      <h2>2号館 5階　女性専用スペース</h2>
+      <p>友達との会話や短い休憩に最適。<br>電子レンジもあります。</p>
+      <span class="tag">🔌 充電：一部テーブルにあり</span>
+      <span class="tag">🪑 座席数：約20席（テーブル＆椅子）</span>
+      <span class="tag">☕ 飲食：可（持ち込みOK）</span>
+    </div>
+    <div class="spot">
+      <h2>中央会館 地下「あるちか」</h2>
+      <p>学生の交流拠点にもなっているアートな空間。　<br>女性専用スペースもあり女性に優しい。</p>
+      <span class="tag">🔌 充電：可（壁側に数カ所あり）</span>
+      <span class="tag">🪑 座席数：約15席（ソファ・机）</span>
+      <span class="tag">☕ 飲食：可（自由に利用可能）</span>
+    </div>
+    
+  </main>
+
+  <a href="index.html" class="back-link">◀︎ トップページに戻る</a>
+</body>
+</html>
